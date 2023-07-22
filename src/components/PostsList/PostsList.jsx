@@ -13,13 +13,15 @@ function PostsList() {
         <>
             <ul className="post-container">
                 {posts.map((post) => (
-                    <li key={post.title} className="card">
-                        <h1>{post.title}</h1>
-                        <h3 className="slug">{post.slug}</h3>
-                        <a href="/post">
-                            <button className="readmore">Read More...</button>
-                        </a>
-                    </li>
+                    <a href="/post">
+                        <li key={post.title} className="card">
+                            <h1>{post.title}</h1>
+                            <h3 className="slug">{post.slug}</h3>
+                            <a href="/post">
+                                <button className="readmore">Read More...</button>
+                            </a>
+                        </li>
+                    </a>
                 ))}
             </ul>
         </>

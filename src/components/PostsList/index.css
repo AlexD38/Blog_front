@@ -16,7 +16,11 @@
 h1 {
     font-size: 1.8rem;
     font-family: var(--font-family__title);
+    
 
+}
+a {
+    text-decoration: none;
 }
 .slug {
     font-size: 1.2rem;
