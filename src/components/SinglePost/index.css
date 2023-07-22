@@ -1,3 +1,15 @@
-p {
-    color : green
+.single-post-container {
+    background-color: #acacac;
+    color: black;
+    width: min(70vw, 100%);
+    max-width: 50rem;
+    margin : 3rem auto;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.title {
+    font-weight: bolder;
+}
+.back-home-btn {
+    margin: 3rem;
 }
