@@ -1,0 +1,11 @@
+.login-btn {
+    position: absolute;
+    right: 3rem;
+    top: 2rem;
+    padding: .5rem 1rem;
+    transition: all .3s ease;
+}
+.login-btn:hover {
+    transition: all .3s ease;
+    transform: translateY(-3px);
+}

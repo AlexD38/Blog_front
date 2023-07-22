@@ -1,0 +1,11 @@
+:root {
+    --primary-color : #e6ecee;
+    --secondary-color : #1c2f44;
+    --tertiary-color : #904e50;
+    --accent-color : #ebad25;
+
+    --font-family__title: 'Cormorant Infant', serif;
+    --font-family__slug: 'Martel Sans', sans-serif;
+    --font-family__body: 'Work Sans', sans-serif;
+
+}

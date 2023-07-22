@@ -1,0 +1,9 @@
+.searchtag {
+    min-width: 50%;
+    margin: 3rem;
+    padding: 1rem;
+    border-radius: .3rem;
+    border: none;
+    /* border: 1px solid white; */
+    background-color: #00000048;
+}
