@@ -1,9 +1,24 @@
+import LoginModal from "../LoginModal/LoginModal";
 import "./index.css";
+import { useState } from "preact/hooks";
+
 function LoginBtn() {
-    return (
-        <>
-            <button className="login-btn">Login</button>
-        </>
-    );
+	const [showLoginModal, setShowLoginModal] = useState(false);
+
+	const showModal = () => {
+		showLoginModal ? setShowLoginModal(false) : setShowLoginModal(true);
+		console.log(showLoginModal);
+	};
+	const closeModal = () => {
+		setShowLoginModal(false);
+	};
+	return (
+		<>
+			<button onClick={showModal} className="login-btn">
+				Login
+			</button>
+			{showLoginModal && <LoginModal onClose={closeModal} />}
+		</>
+	);
 }
 export default LoginBtn;
