@@ -1,0 +1,42 @@
+.post-managment-container,
+.tag-managment-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: nowrap;
+	gap: 2rem 0;
+}
+
+.main-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	width: 90vw;
+	height: 70vh;
+}
+
+.btn {
+	min-width: 10rem;
+	border-radius: 0.3rem;
+	transition: all 0.3s ease;
+	border: none;
+	display: flex;
+	justify-content: baseline;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.3rem;
+}
+.btn:hover {
+	transform: translateY(-2px);
+	background-color: #ffffff8d;
+	transition: all 0.3s ease;
+}
+.logout {
+	position: absolute;
+	top: 3rem;
+	right: 3rem;
+}
+.icon {
+	font-size: 2rem;
+}

@@ -7,7 +7,6 @@ function LoginBtn() {
 
 	const showModal = () => {
 		showLoginModal ? setShowLoginModal(false) : setShowLoginModal(true);
-		console.log(showLoginModal);
 	};
 	const closeModal = () => {
 		setShowLoginModal(false);
