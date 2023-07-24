@@ -1,15 +1,36 @@
 .single-post-container {
-    background-color: #acacac;
-    color: black;
-    width: min(70vw, 100%);
-    max-width: 50rem;
-    margin : 3rem auto;
-    padding: 2rem;
-    border-radius: 1rem;
+	background-color: #acacac;
+	color: black;
+	width: min(70vw, 100%);
+	max-width: 50rem;
+	margin: 3rem auto;
+	padding: 2rem;
+	border-radius: 1rem;
 }
 .title {
-    font-weight: bolder;
+	font-weight: bolder;
 }
 .back-home-btn {
-    margin: 3rem;
+	margin: 3rem;
+}
+.markdown-body {
+	box-sizing: border-box;
+	min-width: 200px;
+	max-width: 980px;
+	margin: 0 auto;
+	padding: 45px;
+}
+.markdown-body h2 {
+	box-sizing: border-box;
+	min-width: 200px;
+	max-width: 980px;
+	margin: 0 auto;
+	padding: 45px;
+	color: red;
+}
+
+@media (max-width: 767px) {
+	.markdown-body {
+		padding: 15px;
+	}
 }

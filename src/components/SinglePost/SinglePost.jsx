@@ -1,12 +1,15 @@
 import { useEffect, useState } from "preact/hooks";
 import "./index.css";
 import axios from "axios";
+import { marked } from "marked";
 
 export default function SinglePost(props) {
 	const [singlePost, setSinglePost] = useState([]);
 	const [title, setTitle] = useState("");
 	const [slug, setSlug] = useState("");
 	const [body, setBody] = useState("");
+	// const parsedBody = marked("'" + body + "'");
+
 	useEffect(() => {
 		async function fetchSinglePost() {
 			try {
@@ -30,8 +33,10 @@ export default function SinglePost(props) {
 				<div>
 					<h1 className="title">{title}</h1>
 					<p className="slug">{slug}</p>
-					<div className="body-container">
-						<p className="body">{body}</p>
+					<div className="body-container markdown-body">
+						<p dangerouslySetInnerHTML={body} className="body">
+							{/* {parsedBody} */}
+						</p>
 					</div>
 				</div>
 			</div>
