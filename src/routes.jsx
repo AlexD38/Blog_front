@@ -5,7 +5,7 @@ import SinglePost from "../src/components/SinglePost/SinglePost.jsx";
 const Routes = () => (
 	<Router>
 		<HomePage exact path="/" />
-		<SinglePost exact path="/post" />
+		<SinglePost exact path="/detailedpost/:id" />
 	</Router>
 );
 

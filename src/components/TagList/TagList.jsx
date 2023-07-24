@@ -1,20 +1,28 @@
 import { useState, useEffect } from "preact/hooks";
-import data from "../../../data/data.json";
+import axios from "axios";
 import "./index.css";
 
 function TagList() {
 	const [tags, setTags] = useState([]);
 
 	useEffect(() => {
-		setTags(data[0].tags);
+		async function fetchTags() {
+			try {
+				const response = await axios.get("http://localhost:4000/tags");
+				setTags(response.data);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		fetchTags();
 	}, []);
-
-	console.log(tags);
 
 	return (
 		<ul className="tag-container">
-			{tags.map((string) => (
-				<li className="tag">{string}</li>
+			{tags.map((tag) => (
+				<li key={tag.id} className="tag">
+					{tag.name}
+				</li>
 			))}
 		</ul>
 	);

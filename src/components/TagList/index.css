@@ -1,24 +1,24 @@
 .tag {
-    color: aliceblue;
-    border: 1px solid white;
-    padding: .5rem 1rem;
-    transition: all .3s ease;
-    border-radius: .3rem;
+	color: aliceblue;
+	border: 1px solid white;
+	padding: 0.5rem 1rem;
+	transition: all 0.3s ease;
+	border-radius: 0.3rem;
+	max-width: fit-content;
 }
 .tag-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: min(70vw, 70%);
-    margin: 0 auto;
-    margin-bottom: 3rem;
-
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	width: min(70vw, 70%);
+	margin: 0 auto;
+	margin-bottom: 3rem;
 }
 .tag:hover {
-    background-color: aliceblue;
-    color: black;
-    transition: all .3s ease;
+	background-color: aliceblue;
+	color: black;
+	transition: all 0.3s ease;
 }
