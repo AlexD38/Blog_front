@@ -1,9 +1,9 @@
 import "./index.css";
 import axios from "axios";
 import { route } from "preact-router";
-import { AiFillEdit, AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
 
 import { useEffect, useRef, useState } from "preact/hooks";
+import AddTagsForm from "../../components/AddTagsForm/AddTagsForm";
 
 export default function Editpost() {
     const titleRef = useRef(null);
@@ -81,13 +81,7 @@ export default function Editpost() {
                     </button>
                 </div>
             </form>
-            <form className="add-tag-form">
-                <button className="add-tag" onClick={showTagInput}>
-                    <AiOutlinePlus />
-                    Add Tag
-                </button>
-                <input placeholder="Add tag here..." type="text"></input>
-            </form>
+            <AddTagsForm />
             {tags && tags.map((tag) => <button className="tags">#{tag.name}</button>)}{" "}
         </>
     );
