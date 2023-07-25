@@ -32,8 +32,12 @@ function TagList(props) {
     return (
         <ul className="tag-container">
             {tags.map((tag) => (
-                <li key={tag.id} id={tag.id} className="tag" onClick={deleteTag}>
-                    {isAdmin && <button className="delete-tag-btn">X</button>}
+                <li key={tag.id} id={tag.id} className="tag">
+                    {isAdmin && (
+                        <button id={tag.id} className="delete-tag-btn" onClick={deleteTag}>
+                            X
+                        </button>
+                    )}
                     {tag.name}
                 </li>
             ))}

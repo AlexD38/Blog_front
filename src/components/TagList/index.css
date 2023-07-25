@@ -32,6 +32,7 @@
 }
 .tag:hover .delete-tag-btn  {
 	color: rgb(160, 160, 160);
+
 	transition: all 0.3s ease;
 	
 }
