@@ -46,8 +46,15 @@ strong {
 	list-style-type: circle;
 	margin-left: 2rem;
 }
-.markdown-body p::first-letter {
+.markdown-body p:first-of-type::first-letter {
 	font-size: 5rem;
+}
+.tags {
+	margin: 1rem;
+	display: inline;
+	font-weight: 300;
+	font-style: italic;
+	opacity: 0.8;
 }
 @media (max-width: 767px) {
 	.markdown-body {

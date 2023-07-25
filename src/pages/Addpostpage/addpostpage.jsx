@@ -21,7 +21,7 @@ export default function addpost() {
 				data
 			);
 			alert(response.data.success);
-			route("/admin");
+			route("/");
 		} catch (error) {
 			console.log(error);
 			// alert(error.response.data.error);
@@ -78,7 +78,9 @@ export default function addpost() {
 				<button className="submit-button" type="submit">
 					Send it online !
 				</button>
-				<button className=" cancel-button">Cancel</button>
+				<button className=" cancel-button" onClick={() => route("/")}>
+					Cancel
+				</button>
 			</div>
 		</form>
 	);

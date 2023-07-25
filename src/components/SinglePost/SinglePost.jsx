@@ -9,6 +9,7 @@ export default function SinglePost(props) {
 	const [slug, setSlug] = useState("");
 	const [body, setBody] = useState("");
 	const parsedBody = marked.parse(" " + body + " ");
+	const [tags, setTags] = useState("");
 
 	useEffect(() => {
 		async function fetchSinglePost() {
@@ -17,12 +18,18 @@ export default function SinglePost(props) {
 					`http://localhost:4000/posts/${props.id}`
 				);
 				setSinglePost(response.data[0]);
+				const tagResponse = await axios.get(
+					`http://localhost:4000/posts/${props.id}/tags`
+				);
+				console.log(tagResponse.data);
+				setTags(tagResponse.data);
 			} catch (error) {
 				console.log(error);
 			}
 		}
 		fetchSinglePost();
 	}, []);
+	console.log(tags);
 
 	setTitle(singlePost.title);
 	setBody(singlePost.body);
@@ -38,10 +45,13 @@ export default function SinglePost(props) {
 							dangerouslySetInnerHTML={{
 								__html: parsedBody,
 							}}
-							className="body">
-							{/* {parsedBody} */}
-						</p>
+							className="body"></p>
 					</div>
+					<hr></hr>
+					{tags &&
+						tags.map((tag) => (
+							<div className="tags">#{tag.name}</div>
+						))}
 				</div>
 			</div>
 			<a className="back-home-btn" href="/">

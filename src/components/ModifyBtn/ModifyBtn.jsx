@@ -1,11 +1,12 @@
 import "./index.css";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useState } from "preact/hooks";
+import { route } from "preact-router";
 
-export default function DeleteBtn(props) {
+export default function ModifyBtn(props) {
 	const [postId, setPostsId] = useState(props.postId);
 	const editPost = () => {
-		console.log(`post num : ${postId} clicked !`);
+		route(`/editpost/${postId}`);
 	};
 	return <AiOutlineEdit className="modify-icon" onClick={editPost} />;
 }
