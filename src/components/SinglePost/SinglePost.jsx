@@ -8,7 +8,7 @@ export default function SinglePost(props) {
 	const [title, setTitle] = useState("");
 	const [slug, setSlug] = useState("");
 	const [body, setBody] = useState("");
-	// const parsedBody = marked("'" + body + "'");
+	const parsedBody = marked.parse(" " + body + " ");
 
 	useEffect(() => {
 		async function fetchSinglePost() {
@@ -34,7 +34,11 @@ export default function SinglePost(props) {
 					<h1 className="title">{title}</h1>
 					<p className="slug">{slug}</p>
 					<div className="body-container markdown-body">
-						<p dangerouslySetInnerHTML={body} className="body">
+						<p
+							dangerouslySetInnerHTML={{
+								__html: parsedBody,
+							}}
+							className="body">
 							{/* {parsedBody} */}
 						</p>
 					</div>

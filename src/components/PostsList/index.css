@@ -1,56 +1,86 @@
-.card {
-    transition: all .3s ease;
-    width: min(70vw, 90%);
-    border: 2px solid rgb(0, 0, 0);
-    padding: 1rem;
-    background-color: #acacac;
-    margin: 1rem auto;
-    position: relative;
-    min-height: 10rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: black;
+@keyframes blop {
+	0% {
+		scale: 1;
+	}
+	50% {
+		scale: 1.2;
+	}
+	100% {
+		scale: 1;
+	}
+}
+.card,
+.add-card {
+	transition: all 0.3s ease;
+	width: min(70vw, 90%);
+	border: 2px solid rgb(0, 0, 0);
+	padding: 1rem;
+	background-color: #acacac;
+	margin: 1rem auto;
+	position: relative;
+	min-height: 10rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: black;
+}
+.add-card {
+	cursor: pointer;
+}
+.add-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+.add-card:hover .add-icon {
+	animation: blop 0.5s ease-in-out;
 }
 h1 {
-    font-size: 1.8rem;
-    font-family: var(--font-family__title);
-    
-
+	font-size: 1.8rem;
+	font-family: var(--font-family__title);
 }
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 .slug {
-    font-size: 1.2rem;
-    position: relative;
-    opacity: .9;
-    font-style: italic;
-    font-family: var(--font-family__slug);
+	font-size: 1.2rem;
+	position: relative;
+	opacity: 0.9;
+	font-style: italic;
+	font-family: var(--font-family__slug);
 }
 .post-container {
-    margin: 0;
-    padding: 0;
-    min-width: 100vw;
+	margin: 0;
+	padding: 0;
+	min-width: 100vw;
+	position: relative;
+}
+.delete-icon,
+.modify-icon {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	font-size: 2rem;
+}
+.modify-icon {
+	right: 5rem;
 }
 .readmore {
-    padding: .5rem 1rem;
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    transition: all .3s ease;
-    color: black;
-    border: 1px solid black;
-    font-family: var(--font-family__body);
+	padding: 0.5rem 1rem;
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	transition: all 0.3s ease;
+	color: black;
+	border: 1px solid black;
+	/* font-family: var(--font-family__body); */
 }
 .readmore:hover {
-    
-    transition: all .3s ease;
-    transform: translateY(-3px);
-    
+	transition: all 0.3s ease;
+	transform: translateY(-3px);
 }
-.card:hover {
-    background-color: #e9e9e9;
-    transition: all .3s ease;
+.card:hover,
+.add-card:hover {
+	background-color: #e9e9e9;
+	transition: all 0.3s ease;
 }

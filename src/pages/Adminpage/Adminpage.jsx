@@ -3,13 +3,13 @@ import { AiFillEdit, AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
 import { route } from "preact-router";
 
 export default function Adminpage() {
-	const logout = () => {
+	const sendMeBackHome = () => {
 		route("/");
 	};
 	return (
 		<>
-			<button className="logout" onClick={logout}>
-				Logout
+			<button className="logout" onClick={sendMeBackHome}>
+				Home
 			</button>
 
 			<div className="main-container">

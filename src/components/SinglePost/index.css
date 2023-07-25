@@ -13,22 +13,42 @@
 .back-home-btn {
 	margin: 3rem;
 }
+.body {
+	text-align: left;
+}
 .markdown-body {
 	box-sizing: border-box;
 	min-width: 200px;
 	max-width: 980px;
 	margin: 0 auto;
 	padding: 45px;
+	text-align: left;
 }
-.markdown-body h2 {
-	box-sizing: border-box;
-	min-width: 200px;
-	max-width: 980px;
-	margin: 0 auto;
-	padding: 45px;
-	color: red;
+.markdown-body h1,
+strong {
+	font-weight: bold;
 }
-
+.markdown-body em {
+	font-style: italic;
+}
+.markdown-body hr {
+	margin: 0.5rem auto;
+	margin-bottom: 2.5rem;
+}
+.markdown-body li {
+	list-style-type: disc;
+}
+.markdown-body li li {
+	list-style-type: square;
+	margin-left: 1rem;
+}
+.markdown-body li li li {
+	list-style-type: circle;
+	margin-left: 2rem;
+}
+.markdown-body p::first-letter {
+	font-size: 5rem;
+}
 @media (max-width: 767px) {
 	.markdown-body {
 		padding: 15px;
