@@ -33,7 +33,7 @@ function TagList(props) {
         <ul className="tag-container">
             {tags.map((tag) => (
                 <li key={tag.id} id={tag.id} className="tag">
-                    {isAdmin && (
+                    {props.isAdmin && (
                         <button id={tag.id} className="delete-tag-btn" onClick={deleteTag}>
                             X
                         </button>
