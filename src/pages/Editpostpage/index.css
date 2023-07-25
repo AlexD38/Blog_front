@@ -1,7 +1,21 @@
 .add-tag {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-start;
+	align-items: baseline;
 	position: relative;
+	top: 0;
+	cursor: pointer;
+	margin: .5rem;
+}
+button {
+	cursor: pointer;
+}
+.add-tag-form {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: baseline;
+	position: relative;
+	width: min(50rem, 100%);
 }
