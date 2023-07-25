@@ -27,8 +27,8 @@ export default function Editpost() {
             }
         };
         fetchPost();
-    }, []);
-    console.log(tags);
+    }, [tags]);
+    // console.log(tags);
     const showTagInput = (e) => {
         tagInput ? setTagInput(false) : setTagInput(true);
     };
