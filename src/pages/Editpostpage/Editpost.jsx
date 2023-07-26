@@ -64,6 +64,20 @@ export default function Editpost() {
 		// Call the function to send credentials to the server
 		await sendCorrectedPost();
 	};
+	const detachTag = async (e) => {
+		e.preventDefault();
+		const tagId = +e.target.id;
+		const postID = +postId;
+		try {
+			const response = await axios.delete(
+				`http://localhost:4000/posts/${postID}/tags/${tagId}`
+			);
+			console.log(response);
+			alert(response.data.success);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<div id={post.id}>
@@ -110,10 +124,18 @@ export default function Editpost() {
 					</button>
 				</div>
 			</form>
-			<AddTagsForm id={post.id} />
+			<AddTagsForm id={post.id} tags={tags} />
 			{tags &&
 				tags.map((tag) => (
-					<button className="tags">#{tag.name}</button>
+					<>
+						<button
+							id={tag.id}
+							className="delete-tag-btn"
+							onClick={detachTag}>
+							X
+						</button>
+						<button className="tags">#{tag.name}</button>
+					</>
 				))}{" "}
 		</div>
 	);
