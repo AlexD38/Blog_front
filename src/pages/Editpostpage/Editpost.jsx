@@ -72,7 +72,6 @@ export default function Editpost() {
 			const response = await axios.delete(
 				`http://localhost:4000/posts/${postID}/tags/${tagId}`
 			);
-			console.log(response);
 			alert(response.data.success);
 		} catch (error) {
 			console.log(error);

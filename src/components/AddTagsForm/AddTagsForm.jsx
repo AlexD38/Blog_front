@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function AddTagsForm(props) {
 	const inputRef = useRef(null);
+	const selectRef = useRef(null);
 	const postId = props.id;
 	const [tagList, setTagList] = useState([]);
 
@@ -12,7 +13,7 @@ export default function AddTagsForm(props) {
 		e.preventDefault();
 		try {
 			const data = {
-				name: inputRef.current.value,
+				// name: inputRef.current.value,
 				tagName: inputRef.current.value,
 			};
 			const response = await axios.post(
@@ -29,11 +30,38 @@ export default function AddTagsForm(props) {
 			console.log(error);
 		}
 	};
+	const handleButtonClickFromExistingTag = async (e) => {
+		e.preventDefault();
+		const options = e.target.parentNode.firstChild.options;
+		const optionsArray = Array.from(options);
+		const tagFound = optionsArray.find(
+			(option) => option.innerHTML === selectRef.current.value
+		);
+		const tagId = tagFound.id;
+
+		try {
+			const data = {
+				tagId,
+			};
+			const response = await axios.post(
+				`http://localhost:4000/posts/${postId}/existingtags`,
+				{
+					data,
+				}
+			);
+			// console.log(response);
+			if (response.status === 200) {
+				inputRef.current.value = "";
+				// alert(response.data.success);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	const fetchTags = async () => {
 		try {
 			const response = await axios.get("http://localhost:4000/tags");
 			setTagList(response.data);
-			console.log(tagList);
 		} catch (error) {
 			console.log(error);
 		}
@@ -44,7 +72,7 @@ export default function AddTagsForm(props) {
 		<form className="add-tag-form">
 			<button className="add-tag" onClick={handleButtonClick}>
 				<AiOutlinePlus />
-				Add Tag
+				Add a new tag
 			</button>
 			<input
 				placeholder="Add a new tag here..."
@@ -52,13 +80,19 @@ export default function AddTagsForm(props) {
 				ref={inputRef}
 			/>
 			{tagList && (
-				<select name="tags">
-					{tagList.map((tag) => (
-						<option key={tag.name} value={tag.name}>
-							{tag.name}
-						</option>
-					))}
-				</select>
+				<form>
+					<select name="tags" ref={selectRef}>
+						<option>Select an existing tag</option>
+						{tagList.map((tag) => (
+							<option key={tag.name} id={tag.id} value={tag.name}>
+								{tag.name}
+							</option>
+						))}
+					</select>
+					<button onClick={handleButtonClickFromExistingTag}>
+						Add this tag
+					</button>
+				</form>
 			)}
 		</form>
 	);

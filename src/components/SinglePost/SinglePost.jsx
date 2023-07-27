@@ -21,7 +21,7 @@ export default function SinglePost(props) {
 				const tagResponse = await axios.get(
 					`http://localhost:4000/posts/${props.id}/tags`
 				);
-				console.log(tagResponse.data);
+				// console.log(tagResponse.data);
 				setTags(tagResponse.data);
 			} catch (error) {
 				console.log(error);
@@ -29,7 +29,7 @@ export default function SinglePost(props) {
 		}
 		fetchSinglePost();
 	}, []);
-	console.log(tags);
+	// console.log(tags);
 
 	setTitle(singlePost.title);
 	setBody(singlePost.body);
