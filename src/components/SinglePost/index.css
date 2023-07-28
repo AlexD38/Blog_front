@@ -48,6 +48,7 @@ strong {
 }
 .markdown-body p:first-of-type::first-letter {
 	font-size: 5rem;
+	
 }
 .tags {
 	margin: 1rem;
