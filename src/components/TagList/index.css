@@ -28,11 +28,13 @@
 	cursor: pointer;
 	background-color: transparent;
 	color: aliceblue;
-	border: none
+	border: none;
 }
-.tag:hover .delete-tag-btn  {
+.tag:hover .delete-tag-btn {
 	color: rgb(160, 160, 160);
 
 	transition: all 0.3s ease;
-	
+}
+.input-search-tags {
+	margin: 0 auto;
 }

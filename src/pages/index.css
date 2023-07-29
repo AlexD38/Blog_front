@@ -1,9 +1,35 @@
 .searchtag {
-    min-width: 50%;
-    margin: 3rem;
-    padding: 1rem;
-    border-radius: .3rem;
-    border: none;
-    /* border: 1px solid white; */
-    background-color: #00000048;
+	min-width: 50%;
+	margin: 3rem;
+	padding: 1rem;
+	border-radius: 0.3rem;
+	border: none;
+	/* border: 1px solid white; */
+	background-color: #00000048;
+}
+.taglist-container {
+	margin: 0 auto;
+	max-width: 90%;
+}
+.triangle {
+	font-size: 3rem;
+	margin: 0;
+	transition: all 0.3s ease-in;
+	max-width: fit-content;
+	cursor: pointer;
+}
+.triangle:hover {
+	scale: 1.2;
+	transition: all 0.3s ease-in;
+}
+.show-tags {
+	width: fit-content;
+	margin: 0;
+}
+.triangle-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: nowrap;
 }
