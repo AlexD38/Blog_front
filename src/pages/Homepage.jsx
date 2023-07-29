@@ -2,14 +2,14 @@ import PostsList from "../components/PostsList/PostsList";
 import "./index.css";
 import TagList from "../components/TagList/TagList";
 import LoginBtn from "../components/LoginBtn/LoginBtn";
-import { useState } from "preact/hooks";
+import { useState, useRef } from "preact/hooks";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
-// import Fuse from "fuse.js";
 
 function HomePage() {
 	const [isAdmin, setIsAdmin] = useState(false);
 	const [loginBtnContent, setLoginBtnContent] = useState("Login");
 	const [showTags, setShowTags] = useState(false);
+	const inputRef = useRef(null);
 
 	if (localStorage.getItem("isAdmin")) {
 		setIsAdmin(true);
@@ -28,16 +28,13 @@ function HomePage() {
 
 	return (
 		<>
-			<input
-				placeholder="Search for your tag here..."
-				className="searchtag"
-				type="search"></input>
 			<LoginBtn
 				isAdmin={isAdmin}
 				onLogout={handleLogout}
 				content={loginBtnContent}
 			/>
 			<div className="taglist-container">
+				{showTags && <TagList isAdmin={isAdmin} />}
 				{showTags ? (
 					<div className="trangle-container">
 						<AiOutlineCaretUp
@@ -55,8 +52,6 @@ function HomePage() {
 						<p className="show-tags">Show tags</p>
 					</div>
 				)}
-
-				{showTags && <TagList isAdmin={isAdmin} />}
 			</div>
 			<PostsList isAdmin={isAdmin} />
 		</>

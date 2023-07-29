@@ -14,7 +14,6 @@ function TagList(props) {
 		isCaseSensitive: false,
 	};
 	const fuse = new Fuse(tags, fuseOptions);
-
 	useEffect(() => {
 		async function fetchTags() {
 			try {
@@ -40,54 +39,54 @@ function TagList(props) {
 		}
 	};
 	function searchWithFuse() {
-		const filteredTags = fuse.search(inputRef.current.value);
-		setfilteredTags(filteredTags);
-		console.log(filteredTags);
+		const filteredTagsAfterSearch = fuse.search(inputRef.current.value);
+		setfilteredTags(filteredTagsAfterSearch);
+		console.log(filteredTagsAfterSearch);
 	}
-
 	return (
-		<ul className="tag-container">
+		<>
 			<input
 				ref={inputRef}
 				type="text"
 				onChange={searchWithFuse}
-				className="input-search-tags">
-				hey
-			</input>
-			{filteredTags.length > 0 ? (
-				<>
-					{filteredTags.map((tag) => (
-						<li key={tag.id} id={tag.id} className="tag">
-							{props.isAdmin && (
-								<button
-									id={tag.id}
-									className="delete-tag-btn"
-									onClick={deleteTag}>
-									X
-								</button>
-							)}
-							{tag.item.name}
-						</li>
-					))}
-				</>
-			) : (
-				<>
-					{tags.map((tag) => (
-						<li key={tag.id} id={tag.id} className="tag">
-							{props.isAdmin && (
-								<button
-									id={tag.id}
-									className="delete-tag-btn"
-									onClick={deleteTag}>
-									X
-								</button>
-							)}
-							{tag.name}
-						</li>
-					))}
-				</>
-			)}
-		</ul>
+				className="input-search-tags"
+				placeholder="Search for your tags here..."></input>
+			<ul className="tag-container">
+				{filteredTags.length > 0 ? (
+					<>
+						{filteredTags.map((tag) => (
+							<li key={tag.id} id={tag.id} className="tag">
+								{props.isAdmin && (
+									<button
+										id={tag.id}
+										className="delete-tag-btn"
+										onClick={deleteTag}>
+										X
+									</button>
+								)}
+								{tag.item.name}
+							</li>
+						))}
+					</>
+				) : (
+					<>
+						{tags.map((tag) => (
+							<li key={tag.id} id={tag.id} className="tag">
+								{props.isAdmin && (
+									<button
+										id={tag.id}
+										className="delete-tag-btn"
+										onClick={deleteTag}>
+										X
+									</button>
+								)}
+								{tag.name}
+							</li>
+						))}
+					</>
+				)}
+			</ul>
+		</>
 	);
 }
 
