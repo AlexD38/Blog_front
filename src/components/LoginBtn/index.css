@@ -1,7 +1,7 @@
 .login-btn {
-    position: absolute;
-    right: 3rem;
-    top: 2rem;
+    position: relative;
+    /* right: 3rem;
+    top: 2rem; */
     padding: .5rem 1rem;
     transition: all .3s ease;
 }
