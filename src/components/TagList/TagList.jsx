@@ -44,7 +44,7 @@ function TagList(props) {
 		console.log(filteredTagsAfterSearch);
 	}
 	return (
-		<>
+		<div className="tag-wrapper">
 			<input
 				ref={inputRef}
 				type="text"
@@ -86,7 +86,7 @@ function TagList(props) {
 					</>
 				)}
 			</ul>
-		</>
+		</div>
 	);
 }
 

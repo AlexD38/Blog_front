@@ -6,6 +6,12 @@
 		opacity: 1;
 	}
 }
+.tag-wrapper {
+	border: 2px solid white;
+	padding: 2rem;
+	animation: appear 1.2s ease-out;
+	border-radius: 1rem;
+}
 
 .tag {
 	animation: appear 2s ease;
@@ -41,11 +47,11 @@
 }
 .tag:hover .delete-tag-btn {
 	color: rgb(160, 160, 160);
-
 	transition: all 0.3s ease;
 }
 .input-search-tags {
-	margin: 5rem auto;
+	margin: 2rem auto;
+	margin-top: 0;
 	width: min(50rem, 100%);
 	background-color: black;
 	border: none;

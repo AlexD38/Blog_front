@@ -9,6 +9,17 @@
 		scale: 1;
 	}
 }
+@keyframes appear {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+.card {
+	animation: appear 1s ease;
+}
 .card,
 .add-card {
 	transition: all 0.3s ease;
@@ -83,6 +94,22 @@ a {
 .add-card:hover {
 	background-color: #e9e9e9;
 	transition: all 0.3s ease;
+}
+.input-search-posts {
+	margin: 5rem auto;
+	width: min(50rem, 100%);
+	background-color: black;
+	border: none;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	transition: all 0.3s ease;
+	animation: appear 1s ease;
+}
+.input-search-posts:focus {
+	background-color: rgb(255, 255, 255);
+	transition: all 0.3s ease;
+	color: black;
+	animation: appear 1s ease;
 }
 
 @media (max-width: 768px) {

@@ -39,7 +39,7 @@ export default function SinglePost(props) {
 			<div className="single-post-container">
 				<div>
 					<h1 className="title">{title}</h1>
-					<p className="slug">{slug}</p>
+					<p className="single-post-slug">{slug}</p>
 					<div className="body-container markdown-body">
 						<p
 							dangerouslySetInnerHTML={{
