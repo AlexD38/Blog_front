@@ -43,6 +43,10 @@ function TagList(props) {
 		setfilteredTags(filteredTagsAfterSearch);
 		console.log(filteredTagsAfterSearch);
 	}
+	const handleClick = (e) => {
+		props.clicked(e.target.textContent);
+		console.log(props);
+	};
 	return (
 		<div className="tag-wrapper">
 			<input
@@ -55,7 +59,11 @@ function TagList(props) {
 				{filteredTags.length > 0 ? (
 					<>
 						{filteredTags.map((tag) => (
-							<li key={tag.id} id={tag.id} className="tag">
+							<li
+								key={tag.id}
+								id={tag.id}
+								className="tag"
+								onClick={handleClick}>
 								{props.isAdmin && (
 									<button
 										id={tag.id}
@@ -71,7 +79,11 @@ function TagList(props) {
 				) : (
 					<>
 						{tags.map((tag) => (
-							<li key={tag.id} id={tag.id} className="tag">
+							<li
+								key={tag.id}
+								id={tag.id}
+								className="tag"
+								onClick={handleClick}>
 								{props.isAdmin && (
 									<button
 										id={tag.id}

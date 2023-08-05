@@ -11,11 +11,7 @@ function HomePage() {
 	const [showTags, setShowTags] = useState(false);
 	const inputRef = useRef(null);
 	const [searchText, setSearchText] = useState("");
-
-	const handleInputChange = (event) => {
-		setSearchText(event.target.value);
-		console.log(searchText);
-	};
+	const [tagClicked, setTagClicked] = useState("");
 
 	if (localStorage.getItem("isAdmin")) {
 		setIsAdmin(true);
@@ -31,6 +27,10 @@ function HomePage() {
 		showTags ? setShowTags(false) : setShowTags(true);
 		console.log(showTags);
 	};
+	const handleTagClick = (tag) => {
+		setTagClicked(tag);
+	};
+	// console.log(tagClicked);
 
 	return (
 		<>
@@ -49,7 +49,9 @@ function HomePage() {
 				/>
 			</header>
 			<div className="taglist-container">
-				{showTags && <TagList isAdmin={isAdmin} />}
+				{showTags && (
+					<TagList isAdmin={isAdmin} clicked={handleTagClick} />
+				)}
 				{showTags ? (
 					<div className="trangle-container">
 						<AiOutlineCaretUp
@@ -72,6 +74,7 @@ function HomePage() {
 				isAdmin={isAdmin}
 				inputRef={inputRef}
 				searchText={searchText}
+				tagClicked={tagClicked}
 			/>
 		</>
 	);

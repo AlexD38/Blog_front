@@ -11,6 +11,7 @@ function PostsList(props) {
 	const [posts, setPosts] = useState([]);
 	const [filteredPosts, setFilteredPosts] = useState([]);
 	const inputRef = useRef(null);
+	const [tagClicked, setTagClicked] = useState(props.tagClicked);
 	const fuseOptions = {
 		keys: ["title"],
 		threshold: 0.2,
@@ -40,7 +41,7 @@ function PostsList(props) {
 		route("/addpost");
 	};
 	const handleClick = () => {
-		console.log(ref.current.value);
+		console.log(props.tagClicked);
 	};
 
 	return (
@@ -51,6 +52,7 @@ function PostsList(props) {
 				className="input-search-posts"
 				type="search"
 				placeholder="Search for your posts here..."
+				onClick={handleClick}
 			/>
 			{props.isAdmin && (
 				<ul className="post-container">
