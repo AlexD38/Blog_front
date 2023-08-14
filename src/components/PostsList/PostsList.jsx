@@ -37,7 +37,7 @@ function PostsList(props) {
             }
         }
         fetchPosts();
-    }, []);
+    }, [posts]);
 
     const addPost = () => {
         route("/addpost");

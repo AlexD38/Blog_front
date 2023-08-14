@@ -25,7 +25,7 @@ function TagList(props) {
             }
         }
         fetchTags();
-    }, []);
+    }, [tags]);
     const deleteTag = async (e) => {
         console.log(`tags number ${e.target.id}`);
         if (isAdmin) {

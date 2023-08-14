@@ -4,6 +4,9 @@
 	box-sizing: border-box;
 	font: inherit;
 }
+#app {
+	min-width: 100%;
+}
 
 html {
 	color-scheme: light dark;
