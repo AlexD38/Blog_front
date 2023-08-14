@@ -11,7 +11,9 @@ function PostsList(props) {
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
     const inputRef = useRef(null);
+    const inputTagRef = useRef(props.tagClicked);
     const [tagClicked, setTagClicked] = useState(null);
+    // console.log(props.tagClicked);
 
     const fuseOptions = {
         keys: ["title"],
@@ -30,7 +32,7 @@ function PostsList(props) {
             try {
                 const response = await axios.get(`http://localhost:4000/posts`);
                 setPosts((PostsList) => response.data);
-                console.log(response.data);
+                // console.log(response.data);
                 return;
             } catch (error) {
                 console.log(error);
@@ -49,6 +51,7 @@ function PostsList(props) {
     return (
         <>
             <input ref={inputRef} onChange={searchWithFuse} className="input-search-posts" type="search" placeholder="Search for your posts here..." onClick={handleClick} />
+
             {props.isAdmin && (
                 <ul className="post-container">
                     {" "}
