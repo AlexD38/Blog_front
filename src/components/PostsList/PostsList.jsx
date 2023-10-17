@@ -6,14 +6,14 @@ import "./index.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import { route } from "preact-router";
 import Fuse from "fuse.js";
+import CategoriesList from "../categoriesList/CategoriesList";
 
 function PostsList(props) {
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
+    const [filteredPostsByCat, setFilteredPostsByCat] = useState([]);
     const inputRef = useRef(null);
     const inputTagRef = useRef(props.tagClicked);
-    const [tagClicked, setTagClicked] = useState(null);
-    // console.log(props.tagClicked);
 
     const fuseOptions = {
         keys: ["title"],
@@ -27,12 +27,19 @@ function PostsList(props) {
         console.log(filteredPostsAfterSearch);
     }
 
+    const handleClick = (catId) => {
+        console.log("le tag numéro : ", catId, "à été cliqué");
+        const postByCat = posts.filter((post) => post.category_id == catId);
+        setFilteredPostsByCat(postByCat);
+        console.log(postByCat);
+    };
+
     useEffect(() => {
         async function fetchPosts() {
             try {
                 const response = await axios.get(`http://localhost:4000/posts`);
                 setPosts((PostsList) => response.data);
-                // console.log(response.data);
+                // console.log(props.catId);
                 return;
             } catch (error) {
                 console.log(error);
@@ -44,12 +51,10 @@ function PostsList(props) {
     const addPost = () => {
         route("/addpost");
     };
-    const handleClick = () => {
-        console.log(props.tagClicked);
-    };
 
     return (
         <>
+            <CategoriesList onClick={handleClick} />
             <input ref={inputRef} onChange={searchWithFuse} className="input-search-posts" type="search" placeholder="Search for your posts here..." onClick={handleClick} />
 
             {props.isAdmin && (
@@ -62,6 +67,13 @@ function PostsList(props) {
                 </ul>
             )}
             <ul className="post-container">
+                {filteredPostsByCat.length > 0 && (
+                    <>
+                        {filteredPostsByCat.map((post) => (
+                            <p>{post.title}</p>
+                        ))}
+                    </>
+                )}
                 {filteredPosts.length > 0 ? (
                     <>
                         {filteredPosts.map((post) => (
