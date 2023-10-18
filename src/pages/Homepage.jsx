@@ -3,6 +3,7 @@ import "./index.css";
 import LoginBtn from "../components/LoginBtn/LoginBtn";
 import { useState, useRef } from "preact/hooks";
 import CategoriesList from "../components/categoriesList/CategoriesList";
+import PostsListByCat from "../components/PostsListByCat/PostListByCat";
 
 function HomePage() {
     const [isAdmin, setIsAdmin] = useState(false);
@@ -10,6 +11,7 @@ function HomePage() {
     const inputRef = useRef(null);
     const [searchText, setSearchText] = useState("");
     const [tagClicked, setTagClicked] = useState("");
+    const [category, setCategory] = useState("All");
 
     if (localStorage.getItem("isAdmin")) {
         setIsAdmin(true);
@@ -34,8 +36,11 @@ function HomePage() {
                 </h1>
                 <LoginBtn isAdmin={isAdmin} onLogout={handleLogout} content={loginBtnContent} />
             </header>
-            {/* <div className="taglist-container"></div> */}
-            <PostsList isAdmin={isAdmin} inputRef={inputRef} searchText={searchText} tagClicked={tagClicked} />
+            <div className="taglist-container">
+                <CategoriesList categoryClicked={setCategory} />
+            </div>
+            {/* {category === "All" && <PostsList isAdmin={isAdmin} inputRef={inputRef} searchText={searchText} tagClicked={tagClicked} />} */}
+            {category != "All" ? <PostsListByCat category={category} isAdmin={isAdmin} /> : <PostsList isAdmin={isAdmin} inputRef={inputRef} searchText={searchText} tagClicked={tagClicked} />}
         </>
     );
 }

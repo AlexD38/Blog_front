@@ -9,9 +9,9 @@ import Fuse from "fuse.js";
 import CategoriesList from "../categoriesList/CategoriesList";
 
 function PostsList(props) {
+    // console.log(props);
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
-    const [filteredPostsByCat, setFilteredPostsByCat] = useState([]);
     const inputRef = useRef(null);
     const inputTagRef = useRef(props.tagClicked);
 
@@ -26,13 +26,6 @@ function PostsList(props) {
         setFilteredPosts(filteredPostsAfterSearch);
         console.log(filteredPostsAfterSearch);
     }
-
-    const handleClick = (catId) => {
-        console.log("le tag numéro : ", catId, "à été cliqué");
-        const postByCat = posts.filter((post) => post.category_id == catId);
-        setFilteredPostsByCat(postByCat);
-        console.log(postByCat);
-    };
 
     useEffect(() => {
         async function fetchPosts() {
@@ -51,12 +44,13 @@ function PostsList(props) {
     const addPost = () => {
         route("/addpost");
     };
+    if (props.category == 1) {
+        const filt = posts.filter((post) => post.category_id == props.category);
+    }
 
     return (
         <>
-            <CategoriesList onClick={handleClick} />
-            <input ref={inputRef} onChange={searchWithFuse} className="input-search-posts" type="search" placeholder="Search for your posts here..." onClick={handleClick} />
-
+            <input ref={inputRef} onChange={searchWithFuse} className="input-search-posts" type="search" placeholder="Search for your posts here..." />
             {props.isAdmin && (
                 <ul className="post-container">
                     {" "}
@@ -67,13 +61,6 @@ function PostsList(props) {
                 </ul>
             )}
             <ul className="post-container">
-                {filteredPostsByCat.length > 0 && (
-                    <>
-                        {filteredPostsByCat.map((post) => (
-                            <p>{post.title}</p>
-                        ))}
-                    </>
-                )}
                 {filteredPosts.length > 0 ? (
                     <>
                         {filteredPosts.map((post) => (
