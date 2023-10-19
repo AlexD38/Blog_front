@@ -1,16 +1,10 @@
 import { useState } from "preact/hooks";
 import "./index.css";
-import { AiOutlineDelete } from "react-icons/ai";
 import axios from "axios";
 import { useEffect } from "react";
-import Fuse from "fuse.js";
-import PostsListByCat from "../PostsListByCat/PostListByCat.jsx";
 
 export default function CategoriesList(props) {
     const [cats, setCats] = useState([]);
-    // console.log(props);
-    // const [showPosts, setShowPosts] = useState(false);
-    // const [catClicked, setCatClicked] = useState(null);
 
     useEffect(() => {
         async function fetchCats() {
