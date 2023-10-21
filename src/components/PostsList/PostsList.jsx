@@ -54,8 +54,8 @@ function PostsList(props) {
             {props.isAdmin && (
                 <ul className="post-container">
                     {" "}
-                    <li className="add-card">
-                        <AiOutlinePlus className="add-icon" onClick={addPost} />
+                    <li className="add-card" onClick={addPost}>
+                        <AiOutlinePlus className="add-icon" />
                         WRITE A NEW POST
                     </li>
                 </ul>
