@@ -90,8 +90,11 @@ strong {
 	margin-left: 2rem;
 }
 .markdown-body p:first-of-type::first-letter {
-	font-size: 5rem;
+	/* font-size: 5rem; */
+	initial-letter: 3 3;
+	margin-right: .5rem;
 }
+
 .tags {
 	margin: 1rem;
 	display: inline;
