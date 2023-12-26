@@ -23,7 +23,7 @@ function PostsListByCat(props) {
             }
         }
         fetchPosts();
-    }, [posts]);
+    }, []);
 
     return (
         <>

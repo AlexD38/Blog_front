@@ -39,7 +39,6 @@ function HomePage() {
             <div className="taglist-container">
                 <CategoriesList categoryClicked={setCategory} />
             </div>
-            {/* {category === "All" && <PostsList isAdmin={isAdmin} inputRef={inputRef} searchText={searchText} tagClicked={tagClicked} />} */}
             {category != "All" ? <PostsListByCat category={category} isAdmin={isAdmin} /> : <PostsList isAdmin={isAdmin} inputRef={inputRef} searchText={searchText} tagClicked={tagClicked} />}
         </>
     );

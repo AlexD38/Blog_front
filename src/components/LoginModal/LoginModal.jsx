@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useRef } from "preact/hooks";
-
+import { connect, useDispatch } from "react-redux";
 import "./index.css";
+import { setUserName } from "../../actions";
+import store from "../../store";
 
-export default function LoginModal(props) {
+function LoginModal(props) {
     const mailRef = useRef(null);
     const pwdRef = useRef(null);
+    const dispatch = useDispatch();
 
     const closeModal = () => {
         props.onClose();
@@ -20,8 +23,10 @@ export default function LoginModal(props) {
             const response = await axios.post(`http://localhost:4000/login`, data);
             closeModal();
             console.log(response);
+            dispatch(setUserName(response.data.userName));
+            console.log("Updated State:", store.getState());
             localStorage.setItem("isAdmin", response.data.isAdmin);
-            location.reload();
+            // location.reload();
         } catch (error) {
             console.log(error);
             alert(error.response.data.error);
@@ -63,3 +68,15 @@ export default function LoginModal(props) {
         </>
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userName: state.userName,
+    };
+};
+
+const mapDispatchToProps = {
+    setUserName,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

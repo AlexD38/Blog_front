@@ -17,7 +17,7 @@ export default function CategoriesList(props) {
             }
         }
         fetchCats();
-    }, [cats]);
+    }, []);
     const handleClick = (e) => {
         if (e.target.getAttribute("id")) {
             props.categoryClicked(e.target.getAttribute("id"));
@@ -25,6 +25,15 @@ export default function CategoriesList(props) {
             props.categoryClicked("All");
         }
     };
+    // const numberOfFileIntoCategory = () => {
+    //     const catCount= {};
+    //     cats.forEach(cat => {
+    //         const file =
+
+    //     });
+    //     console.log(catCount);
+    // };
+    // numberOfFileIntoCategory();
     return (
         <aside className="cats-main-wrapper">
             <h3>Categories : </h3>
