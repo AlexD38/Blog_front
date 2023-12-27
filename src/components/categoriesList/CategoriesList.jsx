@@ -10,7 +10,7 @@ export default function CategoriesList(props) {
         async function fetchCats() {
             try {
                 const response = await axios.get(`http://localhost:4000/categories`);
-                setCats((catList) => response.data);
+                setCats(response.data);
                 return cats;
             } catch (error) {
                 console.log(error);
@@ -25,15 +25,7 @@ export default function CategoriesList(props) {
             props.categoryClicked("All");
         }
     };
-    // const numberOfFileIntoCategory = () => {
-    //     const catCount= {};
-    //     cats.forEach(cat => {
-    //         const file =
 
-    //     });
-    //     console.log(catCount);
-    // };
-    // numberOfFileIntoCategory();
     return (
         <aside className="cats-main-wrapper">
             <h3>Categories : </h3>
@@ -43,7 +35,7 @@ export default function CategoriesList(props) {
                     <li onClick={handleClick}>All</li>
                     {cats.map((cat) => (
                         <li key={cat.id} id={cat.id} onClick={handleClick}>
-                            {cat.name}
+                            {cat.category_name} - {cat.posts_count}
                         </li>
                     ))}
                 </ul>

@@ -1,28 +1,38 @@
 .add-post-form {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
-	align-items: baseline;
+	justify-content: center;
+	align-items: center;
 	flex-wrap: nowrap;
 	gap: 1rem;
 	width: 90vw;
+	min-height: -webkit-fit-content;
+	min-height: -moz-fit-content;
 	min-height: fit-content;
 	position: relative;
+	border : 1px solid red;
+	padding: 2rem;
+	position: relative;
+	margin: 0 auto;
 }
 .title-label {
-	min-width: 30%;
+	min-width: 100%;
 }
 .slug-label {
 	position: relative;
-	min-width: 66.8%;
+	min-width: 100%;
+}
+.body-label {
+	min-width: 100%;
 }
 .body-input {
-	min-width: 60vw;
+	min-width: 100%;
 	min-height: 60vh;
 }
 .title-input,
 .slug-input {
 	min-width: 100%;
+	text-align: center;
 }
 .cancel-button,
 .submit-button {
@@ -42,6 +52,14 @@
 .cancel-button:hover,
 .submit-button:hover {
 	transform: translateY(-2px);
-	background-color: #ffffff8d;
+	background-color: #ac3d3d;
 	transition: all 0.3s ease;
+}
+.submit-button:hover {
+	background-color: #469945;
+}
+
+input, textarea {
+	font-family: monospace;
+	padding: .5rem;
 }

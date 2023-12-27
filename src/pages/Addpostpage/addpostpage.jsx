@@ -16,14 +16,18 @@ function addpost() {
     const catRef = useRef(null);
     const userConnected = store.getState();
 
-    if (userConnected.userName) {
-        setIsAdmin(true);
-    }
-    if (!isAdmin) {
-        console.log("Redirecting to home...");
-        const redirectToHome = () => route("/");
-        setTimeout(redirectToHome, 3000);
-    }
+    const checkIsAdmin = () => {
+        if (userConnected.userName) {
+            setIsAdmin(true);
+            return;
+        }
+        if (!isAdmin) {
+            console.log("Redirecting to home...");
+            const redirectToHome = () => route("/");
+            setTimeout(redirectToHome, 3000);
+        }
+    };
+    checkIsAdmin();
 
     const sendNewPost = async () => {
         const data = {
