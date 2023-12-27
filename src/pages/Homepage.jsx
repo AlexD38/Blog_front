@@ -9,7 +9,6 @@ import store from "../store";
 
 function HomePage(props) {
     const [isAdmin, setIsAdmin] = useState(false);
-    const [loginBtnContent, setLoginBtnContent] = useState("Login");
     const inputRef = useRef(null);
     const [searchText, setSearchText] = useState("");
     const [tagClicked, setTagClicked] = useState("");
@@ -17,29 +16,26 @@ function HomePage(props) {
     const userConnected = store.getState();
     // console.log(userConnected.userName);
 
-    if (localStorage.getItem("isAdmin")) {
+    if (userConnected.userName) {
         setIsAdmin(true);
-        setLoginBtnContent("Logout");
     }
 
     const handleLogout = () => {
-        localStorage.removeItem("isAdmin");
         setIsAdmin(false);
-        setLoginBtnContent("Login");
     };
 
     return (
         <>
             <header className="header">
                 <h1 className="logo">
-                    <span>{userConnected.userName}'s </span>
+                    {isAdmin && <span>{userConnected.userName}'s </span>}
                     <span>B</span>
                     <span>l</span>
                     <span>o</span>
                     <span>g</span>
                     <span>.</span>
                 </h1>
-                <LoginBtn isAdmin={isAdmin} onLogout={handleLogout} content={loginBtnContent} />
+                <LoginBtn isAdmin={isAdmin} onLogout={handleLogout} />
             </header>
             <div className="taglist-container">
                 <CategoriesList categoryClicked={setCategory} />
