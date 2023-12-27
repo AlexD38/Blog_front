@@ -1,17 +1,29 @@
 import "./index.css";
 import axios from "axios";
 import { route } from "preact-router";
-
+import { connect } from "react-redux";
 import { useRef } from "preact/hooks";
 import { useState } from "react";
+import store from "../../store";
 
-export default function addpost() {
+function addpost() {
     const [categories, setCategories] = useState("");
     const [showCats, setShowCats] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const titleRef = useRef(null);
     const slugref = useRef(null);
     const bodyRef = useRef(null);
     const catRef = useRef(null);
+    const userConnected = store.getState();
+
+    if (userConnected.userName) {
+        setIsAdmin(true);
+    }
+    if (!isAdmin) {
+        console.log("Redirecting to home...");
+        const redirectToHome = () => route("/");
+        setTimeout(redirectToHome, 3000);
+    }
 
     const sendNewPost = async () => {
         const data = {
@@ -55,36 +67,51 @@ export default function addpost() {
     };
     return (
         <>
-            <form className="add-post-form" action="" onSubmit={handleSubmit}>
-                <label className="title-label" htmlFor="title">
-                    <input ref={titleRef} required className="title-input" id="title" type="text" placeholder="Title" />
-                </label>
-                <label className="slug-label" htmlFor="slug">
-                    <input ref={slugref} placeholder="Slug" required className="slug-input" id="slug" type="text" />
-                </label>
-                <label className="body-label" htmlFor="body">
-                    <textarea ref={bodyRef} required className="body-input" id="body" type="text" />
-                </label>
-                <label className="cat-label" htmlFor="category">
-                    {showCats && (
-                        <select ref={catRef} required className="cat-input" id="body">
-                            {categories.map((cat) => (
-                                <option value={cat.id}>{cat.name}</option>
-                            ))}
-                        </select>
-                    )}
-                </label>
+            {isAdmin ? (
+                <>
+                    <form className="add-post-form" action="" onSubmit={handleSubmit}>
+                        <label className="title-label" htmlFor="title">
+                            <input ref={titleRef} required className="title-input" id="title" type="text" placeholder="Title" />
+                        </label>
+                        <label className="slug-label" htmlFor="slug">
+                            <input ref={slugref} placeholder="Slug" required className="slug-input" id="slug" type="text" />
+                        </label>
+                        <label className="body-label" htmlFor="body">
+                            <textarea ref={bodyRef} required className="body-input" id="body" type="text" />
+                        </label>
+                        <label className="cat-label" htmlFor="category">
+                            {showCats && (
+                                <select ref={catRef} required className="cat-input" id="body">
+                                    {categories.map((cat) => (
+                                        <option value={cat.id}>{cat.name}</option>
+                                    ))}
+                                </select>
+                            )}
+                        </label>
 
-                <div className=" btn-container">
-                    <button className="submit-button" type="submit">
-                        Send it online !
-                    </button>
-                    <button className=" cancel-button" onClick={() => route("/")}>
-                        Cancel
-                    </button>
-                </div>
-            </form>
-            <button onClick={showCatSelect}>Add a category</button>
+                        <div className=" btn-container">
+                            <button className="submit-button" type="submit">
+                                Send it online !
+                            </button>
+                            <button className=" cancel-button" onClick={() => route("/")}>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                    <button onClick={showCatSelect}>Add a category</button>
+                </>
+            ) : (
+                <>
+                    <h2>Vous n'êtes pas connecté !</h2>
+                    <h2>Vous allez être rediriger vers la page d'accueil...</h2>
+                </>
+            )}
         </>
     );
 }
+const mapStateToProps = (state) => {
+    return {
+        userName: state.userName,
+    };
+};
+export default connect(mapStateToProps)(addpost);
