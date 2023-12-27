@@ -25,7 +25,7 @@ function LoginModal(props) {
             console.log(response);
             dispatch(setUserName(response.data.userName));
             console.log("Updated State:", store.getState());
-            localStorage.setItem("isAdmin", response.data.isAdmin);
+            // localStorage.setItem("isAdmin", response.data.isAdmin);
             // location.reload();
         } catch (error) {
             console.log(error);

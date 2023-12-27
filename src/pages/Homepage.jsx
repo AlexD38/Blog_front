@@ -4,14 +4,18 @@ import LoginBtn from "../components/LoginBtn/LoginBtn";
 import { useState, useRef } from "preact/hooks";
 import CategoriesList from "../components/categoriesList/CategoriesList";
 import PostsListByCat from "../components/PostsListByCat/PostListByCat";
+import { connect } from "react-redux";
+import store from "../store";
 
-function HomePage() {
+function HomePage(props) {
     const [isAdmin, setIsAdmin] = useState(false);
     const [loginBtnContent, setLoginBtnContent] = useState("Login");
     const inputRef = useRef(null);
     const [searchText, setSearchText] = useState("");
     const [tagClicked, setTagClicked] = useState("");
     const [category, setCategory] = useState("All");
+    const userConnected = store.getState();
+    // console.log(userConnected.userName);
 
     if (localStorage.getItem("isAdmin")) {
         setIsAdmin(true);
@@ -28,6 +32,7 @@ function HomePage() {
         <>
             <header className="header">
                 <h1 className="logo">
+                    <span>{userConnected.userName}'s </span>
                     <span>B</span>
                     <span>l</span>
                     <span>o</span>
@@ -43,4 +48,9 @@ function HomePage() {
         </>
     );
 }
-export default HomePage;
+const mapStateToProps = (state) => {
+    return {
+        userName: state.userName,
+    };
+};
+export default connect(mapStateToProps)(HomePage);
