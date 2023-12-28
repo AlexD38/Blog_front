@@ -7,7 +7,7 @@ import { useState } from "react";
 import store from "../../store";
 
 function addpost() {
-    const [categories, setCategories] = useState("");
+    const [categories, setCategories] = useState([]);
     const [showCats, setShowCats] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const titleRef = useRef(null);
@@ -48,7 +48,6 @@ function addpost() {
     const fetchCategories = async () => {
         try {
             const cats = await axios.get(`http://localhost:4000/categories`);
-            // console.log(cats.data);
             setCategories(cats.data);
         } catch (error) {
             console.log(error);
@@ -58,6 +57,7 @@ function addpost() {
         fetchCategories();
         setShowCats(true);
     };
+    // console.log("cats : ", categories);
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (titleRef.current.value.length === 0 || slugref.current.value.length === 0 || bodyRef.current.value.length === 0 || catRef.current.value.length === 0) {
@@ -87,7 +87,7 @@ function addpost() {
                             {showCats && (
                                 <select ref={catRef} required className="cat-input" id="body">
                                     {categories.map((cat) => (
-                                        <option value={cat.id}>{cat.name}</option>
+                                        <option value={cat.id}>{cat.category_name}</option>
                                     ))}
                                 </select>
                             )}
