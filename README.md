@@ -38,3 +38,14 @@ Start the server
 ---
 
 🚀🚀🚀
+
+---
+
+# Todo :
+
+-   filter posts
+-   re arrange components on homepage with redux store connexion
+-   auth :
+    -   jwt create token and verify token
+    -   localstorage for persistance
+    -   zod for input validation

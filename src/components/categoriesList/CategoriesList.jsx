@@ -2,9 +2,15 @@ import { useState } from "preact/hooks";
 import "./index.css";
 import axios from "axios";
 import { useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
+import store from "../../store";
+import { setCats } from "../../actions";
 
-export default function CategoriesList(props) {
+function CategoriesList(props) {
     const [cats, setCats] = useState([]);
+    const categories = store.getState();
+    console.log(categories);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         async function fetchCats() {
@@ -34,8 +40,8 @@ export default function CategoriesList(props) {
                     {" "}
                     <li onClick={handleClick}>All</li>
                     {cats.map((cat) => (
-                        <li key={cat.id} id={cat.id} onClick={handleClick}>
-                            {cat.category_name} - {cat.posts_count}
+                        <li className="category" key={cat.id} id={cat.id} onClick={handleClick}>
+                            {cat.category_name} <span className="badge">{cat.posts_count}</span>
                         </li>
                     ))}
                 </ul>
@@ -43,3 +49,12 @@ export default function CategoriesList(props) {
         </aside>
     );
 }
+const mapStateToProps = (state) => {
+    return {
+        categories: state.categories,
+    };
+};
+const mapDispatchToProps = {
+    setCats,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList);

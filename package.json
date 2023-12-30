@@ -16,11 +16,13 @@
     "github-markdown-css": "^5.2.0",
     "marked": "^5.1.1",
     "preact": "^10.19.3",
+    "preact-redux": "^2.1.0",
     "preact-router": "^4.1.2",
     "react": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-redux": "^9.0.4",
-    "redux": "^5.0.1"
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",

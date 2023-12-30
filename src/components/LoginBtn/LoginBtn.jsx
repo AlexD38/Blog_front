@@ -10,7 +10,7 @@ function LoginBtn(props) {
     const [isAdmin, setIsAdmin] = useState(false);
     const userConnected = store.getState();
     const dispatch = useDispatch();
-    console.log(props);
+    // console.log(props);
 
     const changeLogBtnContent = () => {
         if (!userConnected.userName) {
