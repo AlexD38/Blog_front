@@ -10,12 +10,12 @@ function CategoriesList(props) {
     const [cats, setCats] = useState([]);
     const categories = store.getState();
     console.log(categories);
-    const dispatch = useDispatch();
 
     useEffect(() => {
         async function fetchCats() {
             try {
                 const response = await axios.get(`http://localhost:4000/categories`);
+                console.log(response.data);
                 setCats(response.data);
                 return cats;
             } catch (error) {
@@ -41,7 +41,7 @@ function CategoriesList(props) {
                     <li onClick={handleClick}>All</li>
                     {cats.map((cat) => (
                         <li className="category" key={cat.id} id={cat.id} onClick={handleClick}>
-                            {cat.category_name} <span className="badge">{cat.posts_count}</span>
+                            {cat.category_name} {cat.posts_data[0].title != null ? <span className="badge">{cat.posts_data.length}</span> : <span className="badge">{cat.posts_data.length - 1}</span>}
                         </li>
                     ))}
                 </ul>

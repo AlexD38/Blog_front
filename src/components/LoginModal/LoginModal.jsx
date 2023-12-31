@@ -22,9 +22,10 @@ function LoginModal(props) {
         try {
             const response = await axios.post(`http://localhost:4000/login`, data);
             closeModal();
-            // console.log("response from login : ", response);
+            console.log("response from login : ", response);
             dispatch(setUserName(response.data.userName));
-            // console.log("Updated State:", store.getState());
+
+            localStorage.setItem("user", response.data.userName);
             localStorage.setItem("token", response.data.token);
         } catch (error) {
             console.log(error);

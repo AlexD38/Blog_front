@@ -10,10 +10,11 @@ function LoginBtn(props) {
     const [isAdmin, setIsAdmin] = useState(false);
     const userConnected = store.getState();
     const dispatch = useDispatch();
+    const token = localStorage.getItem("token");
     // console.log(props);
 
     const changeLogBtnContent = () => {
-        if (!userConnected.userName) {
+        if (!token) {
             return;
         }
         setIsAdmin(true);

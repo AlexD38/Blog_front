@@ -6,7 +6,7 @@ import { DEL_USER_NAME, SET_USER_NAME, SET_CATS } from "./actions";
 const initialState = {
     userName: null,
     posts: null,
-    categories: null,
+    categories: [],
 };
 
 export const userReducer = (state = initialState, action) => {

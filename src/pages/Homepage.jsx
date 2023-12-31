@@ -14,13 +14,16 @@ function HomePage(props) {
     const [tagClicked, setTagClicked] = useState("");
     const [category, setCategory] = useState("All");
     const userConnected = store.getState();
-    // console.log(userConnected.userName);
+    const token = localStorage.getItem("token");
+    const userName = localStorage.getItem("user");
 
-    if (userConnected.userName) {
+    if (token) {
         setIsAdmin(true);
     }
 
     const handleLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
         setIsAdmin(false);
     };
 
@@ -28,7 +31,7 @@ function HomePage(props) {
         <>
             <header className="header">
                 <h1 className="logo">
-                    {isAdmin && <span>{userConnected.userName}'s </span>}
+                    {isAdmin && <span>{userName}'s </span>}
                     <span>B</span>
                     <span>l</span>
                     <span>o</span>

@@ -1,12 +1,6 @@
 import { useState, useEffect, useRef } from "preact/hooks";
 import axios from "axios";
-import DeleteBtn from "../DeleteBtn/Deletebtn";
-import ModifyBtn from "../ModifyBtn/ModifyBtn.jsx";
 import "../PostsList/index.css";
-import { AiOutlinePlus } from "react-icons/ai";
-import { route } from "preact-router";
-import Fuse from "fuse.js";
-import CategoriesList from "../categoriesList/CategoriesList";
 
 function PostsListByCat(props) {
     const [posts, setPosts] = useState([]);

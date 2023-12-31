@@ -14,10 +14,10 @@ function addpost() {
     const slugref = useRef(null);
     const bodyRef = useRef(null);
     const catRef = useRef(null);
-    const userConnected = store.getState();
+    const userName = localStorage.getItem("user");
 
     const checkIsAdmin = () => {
-        if (userConnected.userName) {
+        if (userName) {
             setIsAdmin(true);
             return;
         }
@@ -48,7 +48,12 @@ function addpost() {
     const fetchCategories = async () => {
         try {
             const cats = await axios.get(`http://localhost:4000/categories`);
-            setCategories(cats.data);
+            const categoriesToAdd = cats.data.map((category) => ({
+                id: category.category_id,
+                name: category.category_name,
+            }));
+            setCategories(categoriesToAdd);
+            console.log(categoriesToAdd);
         } catch (error) {
             console.log(error);
         }
@@ -87,7 +92,7 @@ function addpost() {
                             {showCats && (
                                 <select ref={catRef} required className="cat-input" id="body">
                                     {categories.map((cat) => (
-                                        <option value={cat.id}>{cat.category_name}</option>
+                                        <option value={cat.id}>{cat.name}</option>
                                     ))}
                                 </select>
                             )}
