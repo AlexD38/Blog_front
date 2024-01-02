@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useRef } from "preact/hooks";
 import { connect, useDispatch } from "react-redux";
-import "./index.css";
 import { setUserName } from "../../actions";
 import store from "../../store";
+
+import "./index.css";
 
 function LoginModal(props) {
     const mailRef = useRef(null);

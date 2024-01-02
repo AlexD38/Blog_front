@@ -6,7 +6,7 @@ import { DEL_USER_NAME, SET_USER_NAME, SET_CATS } from "./actions";
 const initialState = {
     userName: null,
     posts: null,
-    categories: [],
+    categoryClicked: null,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -20,7 +20,7 @@ export const userReducer = (state = initialState, action) => {
     }
     switch (action.type) {
         case SET_CATS:
-            return { ...state, categories: action.payload };
+            return { ...state, categoryClicked: action.payload };
         default:
             return state;
     }

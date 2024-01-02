@@ -13,7 +13,7 @@ export const delUserName = () => ({
 export const delPost = () => ({
     type: DEL_POST,
 });
-export const setCats = (categoryName) => ({
+export const setCats = (categoryId) => ({
     type: SET_CATS,
-    payload: categoryName,
+    payload: categoryId,
 });

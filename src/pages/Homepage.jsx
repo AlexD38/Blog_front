@@ -2,17 +2,16 @@ import PostsList from "../components/PostsList/PostsList";
 import "./index.css";
 import LoginBtn from "../components/LoginBtn/LoginBtn";
 import { useState, useRef } from "preact/hooks";
-import CategoriesList from "../components/categoriesList/CategoriesList";
-import PostsListByCat from "../components/PostsListByCat/PostListByCat";
 import { connect } from "react-redux";
 import store from "../store";
+import PostListByCat from "../components/PostsListByCat/PostListByCat";
+import CategoriesList from "../components/categoriesList/CategoriesList";
 
 function HomePage(props) {
     const [isAdmin, setIsAdmin] = useState(false);
     const inputRef = useRef(null);
     const [searchText, setSearchText] = useState("");
     const [tagClicked, setTagClicked] = useState("");
-    const [category, setCategory] = useState("All");
     const userConnected = store.getState();
     const token = localStorage.getItem("token");
     const userName = localStorage.getItem("user");
@@ -41,9 +40,10 @@ function HomePage(props) {
                 <LoginBtn isAdmin={isAdmin} onLogout={handleLogout} />
             </header>
             <div className="taglist-container">
-                <CategoriesList categoryClicked={setCategory} />
+                <CategoriesList />
             </div>
-            {category != "All" ? <PostsListByCat category={category} isAdmin={isAdmin} /> : <PostsList isAdmin={isAdmin} inputRef={inputRef} searchText={searchText} tagClicked={tagClicked} />}
+            <PostListByCat />
+            {/* <PostsList isAdmin={isAdmin} inputRef={inputRef} searchText={searchText} tagClicked={tagClicked} /> */}
         </>
     );
 }

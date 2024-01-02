@@ -6,18 +6,19 @@ import { connect, useDispatch } from "react-redux";
 import store from "../../store";
 import { setCats } from "../../actions";
 
-function CategoriesList(props) {
-    const [cats, setCats] = useState([]);
-    const categories = store.getState();
-    console.log(categories);
+function CategoriesList() {
+    const [categoriesFetched, setCategoriesFetched] = useState([]);
+    const dispatch = useDispatch();
+    const [categoryClicked, setCategoryClicked] = useState(null);
+    // console.log(store.getState());
 
     useEffect(() => {
         async function fetchCats() {
             try {
                 const response = await axios.get(`http://localhost:4000/categories`);
-                console.log(response.data);
-                setCats(response.data);
-                return cats;
+                // console.log(response.data);
+                setCategoriesFetched(response.data);
+                return;
             } catch (error) {
                 console.log(error);
             }
@@ -25,33 +26,39 @@ function CategoriesList(props) {
         fetchCats();
     }, []);
     const handleClick = (e) => {
+        // console.log(cats);
+        if (!e.target.getAttribute("id")) {
+            dispatch(setCats(e.target.getAttribute(null)));
+        }
         if (e.target.getAttribute("id")) {
-            props.categoryClicked(e.target.getAttribute("id"));
-        } else {
-            props.categoryClicked("All");
+            // setCategoryClicked(e.target.getAttribute("id"));
+            dispatch(setCats(e.target.getAttribute("id")));
+            // console.log("catclicked", e.target.getAttribute("id"));
         }
     };
 
     return (
-        <aside className="cats-main-wrapper">
-            <h3>Categories : </h3>
-            {cats && (
-                <ul>
-                    {" "}
-                    <li onClick={handleClick}>All</li>
-                    {cats.map((cat) => (
-                        <li className="category" key={cat.id} id={cat.id} onClick={handleClick}>
-                            {cat.category_name} {cat.posts_data[0].title != null ? <span className="badge">{cat.posts_data.length}</span> : <span className="badge">{cat.posts_data.length - 1}</span>}
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </aside>
+        <>
+            <aside className="cats-main-wrapper">
+                <h3>Categories : </h3>
+                {categoriesFetched && (
+                    <ul>
+                        {" "}
+                        <li onClick={handleClick}>All</li>
+                        {categoriesFetched.map((cat) => (
+                            <li onClick={handleClick} className="category" key={cat.id} id={cat.id}>
+                                {cat.name}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </aside>
+        </>
     );
 }
 const mapStateToProps = (state) => {
     return {
-        categories: state.categories,
+        categoryClicked: state.categoryClicked,
     };
 };
 const mapDispatchToProps = {

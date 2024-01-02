@@ -6,14 +6,16 @@ import "./index.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import { route } from "preact-router";
 import Fuse from "fuse.js";
-import CategoriesList from "../categoriesList/CategoriesList";
+import store from "../../store";
+import { connect, useSelector } from "react-redux";
 
 function PostsList(props) {
-    // console.log(props);
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
     const inputRef = useRef(null);
+    const [category, setCategory] = useState("All");
     const inputTagRef = useRef(props.tagClicked);
+    const storeData = useSelector((state) => state.categoryClicked);
 
     const fuseOptions = {
         keys: ["title"],
@@ -44,9 +46,6 @@ function PostsList(props) {
     const addPost = () => {
         route("/addpost");
     };
-    if (props.category == 1) {
-        const filt = posts.filter((post) => post.category_id == props.category);
-    }
 
     return (
         <>
@@ -64,7 +63,7 @@ function PostsList(props) {
                 {filteredPosts.length > 0 ? (
                     <>
                         {filteredPosts.map((post) => (
-                            <li key={post.item.id} className="card">
+                            <li data-aos="fade-up" key={post.item.id} className="card">
                                 <h1>{post.item.title}</h1>
                                 <h3 className="slug">{post.item.slug}</h3>
                                 <a href={"/detailedpost/" + post.item.id}>
@@ -82,7 +81,7 @@ function PostsList(props) {
                 ) : (
                     <>
                         {posts.map((post) => (
-                            <li key={post.id} className="card">
+                            <li data-aos="fade-up" key={post.id} className="card">
                                 <h1>{post.title}</h1>
                                 <h3 className="slug">{post.slug}</h3>
                                 <a href={"/detailedpost/" + post.id}>
@@ -102,4 +101,9 @@ function PostsList(props) {
         </>
     );
 }
-export default PostsList;
+const mapStateToProps = (state) => {
+    return {
+        categoryClicked: state.categoryClicked,
+    };
+};
+export default connect(mapStateToProps)(PostsList);
