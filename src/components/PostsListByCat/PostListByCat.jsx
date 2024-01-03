@@ -2,11 +2,10 @@ import { useState, useEffect } from "preact/hooks";
 import axios from "axios";
 import { connect, useSelector } from "react-redux";
 import store from "../../store";
-
 import "../PostsList/index.css";
 import PostsList from "../PostsList/PostsList";
 
-function PostsListByCat() {
+function PostsListByCat(props) {
     const [posts, setPosts] = useState([]);
     const [catClicked, setCatClicked] = useState(store.getState().categoryClicked);
     // console.log(store.getState().categoryClicked);
@@ -33,7 +32,7 @@ function PostsListByCat() {
     return (
         <>
             {" "}
-            {!catClicked && <PostsList />}
+            {!catClicked && <PostsList isAdmin={props.isAdmin} />}
             {catClicked && (
                 <ul className="post-container">
                     <>

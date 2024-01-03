@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "preact/hooks";
 import axios from "axios";
 import DeleteBtn from "../DeleteBtn/Deletebtn";
 import ModifyBtn from "../ModifyBtn/ModifyBtn.jsx";
+import "../PostsList/index.css";
 import "./index.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import { route } from "preact-router";

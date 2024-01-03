@@ -10,7 +10,7 @@
 	min-height: -moz-fit-content;
 	min-height: fit-content;
 	position: relative;
-	border : 1px solid red;
+	/* border : 1px solid red; */
 	padding: 2rem;
 	position: relative;
 	margin: 0 auto;
@@ -33,6 +33,9 @@
 .slug-input {
 	min-width: 100%;
 	text-align: center;
+}
+.btn-container {
+	margin-top: 0;
 }
 .cancel-button,
 .submit-button {

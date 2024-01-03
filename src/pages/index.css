@@ -1,9 +1,25 @@
+@-webkit-keyframes logo {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
 @keyframes logo {
 	0% {
 		opacity: 0;
 	}
 	100% {
 		opacity: 1;
+	}
+}
+@-webkit-keyframes dotSlide {
+	from {
+		/* opacity: 0; */
+	}
+	to {
+		transform: translate(300px);
 	}
 }
 @keyframes dotSlide {
@@ -32,6 +48,8 @@
 	font-size: 3rem;
 	margin: 0;
 	transition: all 0.3s ease-in;
+	max-width: -webkit-fit-content;
+	max-width: -moz-fit-content;
 	max-width: fit-content;
 	cursor: pointer;
 }
@@ -40,6 +58,8 @@
 	transition: all 0.3s ease-in;
 }
 .show-tags {
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
 	width: fit-content;
 	margin: 0;
 }
@@ -56,19 +76,24 @@
 	margin: 0;
 }
 .logo :nth-child(1) {
-	animation: logo 1s ease-in;
+	-webkit-animation: logo 1s ease-in;
+	        animation: logo 1s ease-in;
 }
 .logo :nth-child(2) {
-	animation: logo 1.5s ease-in;
+	-webkit-animation: logo 1.5s ease-in;
+	        animation: logo 1.5s ease-in;
 }
 .logo :nth-child(3) {
-	animation: logo 2s ease-in;
+	-webkit-animation: logo 2s ease-in;
+	        animation: logo 2s ease-in;
 }
 .logo :nth-child(4) {
-	animation: logo 2.5s ease-in;
+	-webkit-animation: logo 2.5s ease-in;
+	        animation: logo 2.5s ease-in;
 }
 .logo :nth-child(5) {
-	animation: logo 3s ease-in;
+	-webkit-animation: logo 3s ease-in;
+	        animation: logo 3s ease-in;
 }
 .input-search-posts {
 	margin: 5rem auto;
@@ -78,7 +103,8 @@
 	padding: 1rem;
 	border-radius: 0.5rem;
 	transition: all 0.3s ease;
-	animation: appear 1s ease;
+	-webkit-animation: appear 1s ease;
+	        animation: appear 1s ease;
 }
 
 .header {
@@ -90,4 +116,5 @@
 	width: min(100rem, 90%);
 	margin: 0 auto;
 	margin-bottom: 5rem;
+	font-family: var(--font-family__title);
 }

@@ -44,4 +44,9 @@
 	font-family: monospace;
 	border-radius: .2rem;
 	right: -1rem;
+	transition: all .3s ease;
+}
+.add-icon {
+	font-size: 1.125rem;
+	margin: 0.35rem 0 ;
 }

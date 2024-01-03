@@ -5,8 +5,9 @@ import { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import store from "../../store";
 import { setCats } from "../../actions";
+import { AiOutlinePlus } from "react-icons/ai";
 
-function CategoriesList() {
+function CategoriesList(props) {
     const [categoriesFetched, setCategoriesFetched] = useState([]);
     const dispatch = useDispatch();
     const [categoryClicked, setCategoryClicked] = useState(null);
@@ -50,6 +51,12 @@ function CategoriesList() {
                                 {cat.name}
                             </li>
                         ))}
+                        {props.isAdmin && (
+                            <li className="add-cat">
+                                {" "}
+                                <AiOutlinePlus className="add-icon" /*onClick={handleAddIconClick}*/ />
+                            </li>
+                        )}
                     </ul>
                 )}
             </aside>

@@ -49,8 +49,8 @@ function addpost() {
         try {
             const cats = await axios.get(`http://localhost:4000/categories`);
             const categoriesToAdd = cats.data.map((category) => ({
-                id: category.category_id,
-                name: category.category_name,
+                id: category.id,
+                name: category.name,
             }));
             setCategories(categoriesToAdd);
             console.log(categoriesToAdd);
@@ -107,7 +107,7 @@ function addpost() {
                             </button>
                         </div>
                     </form>
-                    <button onClick={showCatSelect}>Add a category</button>
+                    <button onClick={showCatSelect}>Add to category</button>
                 </>
             ) : (
                 <>

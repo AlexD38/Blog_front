@@ -5,7 +5,7 @@ import { useState, useRef } from "preact/hooks";
 import { connect } from "react-redux";
 import store from "../store";
 import PostListByCat from "../components/PostsListByCat/PostListByCat";
-import CategoriesList from "../components/categoriesList/CategoriesList";
+import CategoriesList from "../components/CategoriesList/CategoriesList";
 
 function HomePage(props) {
     const [isAdmin, setIsAdmin] = useState(false);
@@ -40,9 +40,9 @@ function HomePage(props) {
                 <LoginBtn isAdmin={isAdmin} onLogout={handleLogout} />
             </header>
             <div className="taglist-container">
-                <CategoriesList />
+                <CategoriesList isAdmin={isAdmin} />
             </div>
-            <PostListByCat />
+            <PostListByCat isAdmin={isAdmin} />
             {/* <PostsList isAdmin={isAdmin} inputRef={inputRef} searchText={searchText} tagClicked={tagClicked} /> */}
         </>
     );
