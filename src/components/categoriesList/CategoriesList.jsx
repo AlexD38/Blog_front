@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState, useContext } from "preact/hooks";
 import "./index.css";
 import axios from "axios";
 import { useEffect } from "react";
@@ -6,18 +6,19 @@ import { connect, useDispatch } from "react-redux";
 import store from "../../store";
 import { setCats } from "../../actions";
 import { AiOutlinePlus } from "react-icons/ai";
+import Context from "../../context.js";
 
 function CategoriesList(props) {
     const [categoriesFetched, setCategoriesFetched] = useState([]);
     const dispatch = useDispatch();
     const [categoryClicked, setCategoryClicked] = useState(null);
-    // console.log(store.getState());
+    const context = useContext(Context);
 
     useEffect(() => {
         async function fetchCats() {
             try {
                 const response = await axios.get(`http://localhost:4000/categories`);
-                // console.log(response.data);
+                context.setCats((prevCatsList) => [...prevCatsList, ...response.data]);
                 setCategoriesFetched(response.data);
                 return;
             } catch (error) {
@@ -27,16 +28,23 @@ function CategoriesList(props) {
         fetchCats();
     }, []);
     const handleClick = (e) => {
+        console.log(store.getState());
+
         // console.log(cats);
         if (!e.target.getAttribute("id")) {
-            dispatch(setCats(e.target.getAttribute(null)));
+            // dispatch(setCats(e.target.getAttribute(null)));
+            context.setCategoryClicked(e.target.getAttribute(null));
         }
         if (e.target.getAttribute("id")) {
             // setCategoryClicked(e.target.getAttribute("id"));
-            dispatch(setCats(e.target.getAttribute("id")));
+            context.setCategoryClicked(e.target.getAttribute("id"));
+            // dispatch(setCats(e.target.getAttribute("id")));
             // console.log("catclicked", e.target.getAttribute("id"));
         }
     };
+
+    setCategoriesFetched(context.cats);
+    setCategoryClicked(context.categoryClicked);
 
     return (
         <>

@@ -1,13 +1,10 @@
 // store.js
-// import { applyMiddleware } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
-import { configureStore } from "@reduxjs/toolkit"; // Import configureStore from Redux Toolkit
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "./reducers"; // Import your root reducer
 
-// import thunk from "redux-thunk";
-import { userReducer } from "./reducers.js"; // Assurez-vous d'avoir un fichier reducers.js approprié
-
-// const middleware = [thunk];
-
-const store = configureStore({ reducer: userReducer });
+const store = configureStore({
+    reducer: userReducer,
+    // Any additional configuration, middleware, etc.
+});
 
 export default store;

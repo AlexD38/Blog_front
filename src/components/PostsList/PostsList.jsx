@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "preact/hooks";
+import { useState, useEffect, useRef, useContext } from "preact/hooks";
 import axios from "axios";
 import DeleteBtn from "../DeleteBtn/Deletebtn";
 import ModifyBtn from "../ModifyBtn/ModifyBtn.jsx";
@@ -8,7 +8,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { route } from "preact-router";
 import Fuse from "fuse.js";
 import store from "../../store";
-import { connect, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
+import Context from "../../context.js";
 
 function PostsList(props) {
     const [posts, setPosts] = useState([]);
@@ -17,6 +18,8 @@ function PostsList(props) {
     const [category, setCategory] = useState("All");
     const inputTagRef = useRef(props.tagClicked);
     const storeData = useSelector((state) => state.categoryClicked);
+    const dispatch = useDispatch();
+    const context = useContext(Context);
 
     const fuseOptions = {
         keys: ["title"],
@@ -27,29 +30,30 @@ function PostsList(props) {
     function searchWithFuse() {
         const filteredPostsAfterSearch = fuse.search(inputRef.current.value);
         setFilteredPosts(filteredPostsAfterSearch);
-        console.log(filteredPostsAfterSearch);
     }
 
     useEffect(() => {
         async function fetchPosts() {
             try {
                 const response = await axios.get(`http://localhost:4000/posts`);
+                context.setPosts((prevPosts) => [...prevPosts, ...response.data]);
                 setPosts((PostsList) => response.data);
-                // console.log(props.catId);
                 return;
             } catch (error) {
                 console.log(error);
             }
         }
         fetchPosts();
-    }, [posts]);
+    }, []);
 
     const addPost = () => {
         route("/addpost");
     };
+    setPosts(context.posts);
 
     return (
         <>
+            {" "}
             <input ref={inputRef} onChange={searchWithFuse} className="input-search-posts" type="search" placeholder="Search for your posts here..." />
             {props.isAdmin && (
                 <ul className="post-container">
