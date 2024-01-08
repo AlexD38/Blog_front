@@ -13,13 +13,12 @@ function CategoriesList(props) {
     const dispatch = useDispatch();
     const [categoryClicked, setCategoryClicked] = useState(null);
     const context = useContext(Context);
-    setCategoryClicked(context.categoryClicked);
 
     useEffect(() => {
         async function fetchCats() {
             try {
                 const response = await axios.get(`http://localhost:4000/categories`);
-                context.setCats((prevCatsList) => [...prevCatsList, ...response.data]);
+                context.setCats(response.data);
                 setCategoriesFetched(response.data);
                 return;
             } catch (error) {
