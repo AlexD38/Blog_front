@@ -13,6 +13,7 @@ function CategoriesList(props) {
     const dispatch = useDispatch();
     const [categoryClicked, setCategoryClicked] = useState(null);
     const context = useContext(Context);
+    setCategoryClicked(context.categoryClicked);
 
     useEffect(() => {
         async function fetchCats() {
@@ -30,16 +31,11 @@ function CategoriesList(props) {
     const handleClick = (e) => {
         console.log(store.getState());
 
-        // console.log(cats);
         if (!e.target.getAttribute("id")) {
-            // dispatch(setCats(e.target.getAttribute(null)));
             context.setCategoryClicked(e.target.getAttribute(null));
         }
         if (e.target.getAttribute("id")) {
-            // setCategoryClicked(e.target.getAttribute("id"));
             context.setCategoryClicked(e.target.getAttribute("id"));
-            // dispatch(setCats(e.target.getAttribute("id")));
-            // console.log("catclicked", e.target.getAttribute("id"));
         }
     };
 

@@ -1,60 +1,55 @@
-import { useState, useEffect } from "preact/hooks";
-import axios from "axios";
+import { useState, useEffect, useContext } from "preact/hooks";
 import { connect, useSelector } from "react-redux";
-import store from "../../store";
 import "../PostsList/index.css";
 import PostsList from "../PostsList/PostsList";
+import Context from "../../context.js";
+import "./style.css";
 
 function PostsListByCat(props) {
-    const [posts, setPosts] = useState([]);
-    const [catClicked, setCatClicked] = useState(store.getState().categoryClicked);
-    // console.log(store.getState().categoryClicked);
-    const storeData = useSelector((state) => state.categoryClicked);
+    const context = useContext(Context);
+    const [filteredPosts, setFilteredPosts] = useState([]);
+    const [posts, setPosts] = useState(context.posts);
+    const [catClicked, setCatClicked] = useState(context.categoryClicked);
 
+    setCatClicked(context.categoryClicked);
+    setPosts(context.posts);
     useEffect(() => {
-        setCatClicked(storeData);
-    }, [storeData]);
+        setCatClicked(context.categoryClicked);
+        setPosts(context.posts);
+        const filteredPosts = posts.filter((post) => post.category_id == +catClicked);
+        setFilteredPosts(filteredPosts);
+    }, [catClicked, posts]);
 
-    useEffect(() => {
-        async function fetchPosts() {
-            try {
-                const response = await axios.get(`http://localhost:4000/categories/${catClicked}/posts`);
-                setPosts((PostsList) => response.data);
-                // console.log(response.data);
-                return;
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchPosts();
-    }, [storeData, catClicked]);
-
+    // console.log("catClicked : ", catClicked);
+    console.log("filtered posts : ", posts);
     return (
         <>
             {" "}
             {!catClicked && <PostsList isAdmin={props.isAdmin} />}
             {catClicked && (
                 <ul className="post-container">
-                    <>
-                        {posts.map((post) => (
-                            <li key={post.id} className="card">
+                    {filteredPosts.length > 0 ? (
+                        filteredPosts.map((post) => (
+                            <li data-aos="fade-up" key={post.id} className="card">
                                 <h1>{post.title}</h1>
                                 <h3 className="slug">{post.slug}</h3>
                                 <a href={"/detailedpost/" + post.id}>
                                     <button className="readmore">Read More...</button>
                                 </a>
                             </li>
-                        ))}
-                    </>
+                        ))
+                    ) : (
+                        <li data-aos="fade-up" className="no-post-message">
+                            <br />
+                            ... OUPS ! <br />
+                            <br />
+                            There's no post in this category yet... Login and add one !
+                        </li>
+                    )}
                 </ul>
             )}
         </>
     );
 }
-const mapStateToProps = (state) => {
-    return {
-        userName: state.categoryClicked,
-    };
-};
 
-export default connect(mapStateToProps)(PostsListByCat);
+export default connect()(PostsListByCat);

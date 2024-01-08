@@ -1,11 +1,12 @@
 import PostsList from "../components/PostsList/PostsList";
 import "./index.css";
 import LoginBtn from "../components/LoginBtn/LoginBtn";
-import { useState, useRef } from "preact/hooks";
+import { useState, useRef, useContext } from "preact/hooks";
 import { connect } from "react-redux";
 import store from "../store";
 import PostListByCat from "../components/PostsListByCat/PostListByCat";
 import CategoriesList from "../components/CategoriesList/CategoriesList";
+import Context from "../context.js";
 
 function HomePage(props) {
     const [isAdmin, setIsAdmin] = useState(false);
@@ -15,7 +16,9 @@ function HomePage(props) {
     const userConnected = store.getState();
     const token = localStorage.getItem("token");
     const userName = localStorage.getItem("user");
+    const context = useContext(Context);
 
+    console.log(context);
     if (token) {
         setIsAdmin(true);
     }
