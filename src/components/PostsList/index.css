@@ -1,3 +1,14 @@
+@-webkit-keyframes blop {
+	0% {
+		scale: 1;
+	}
+	50% {
+		scale: 1.2;
+	}
+	100% {
+		scale: 1;
+	}
+}
 @keyframes blop {
 	0% {
 		scale: 1;
@@ -9,6 +20,14 @@
 		scale: 1;
 	}
 }
+@-webkit-keyframes appear {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
 @keyframes appear {
 	from {
 		opacity: 0;
@@ -18,7 +37,8 @@
 	}
 }
 .card {
-	animation: appear 1s ease;
+	-webkit-animation: appear 1s ease;
+	        animation: appear 1s ease;
 }
 .card,
 .add-card {
@@ -44,7 +64,8 @@
 	margin-bottom: 1rem;
 }
 .add-card:hover .add-icon {
-	animation: blop 0.5s ease-in-out;
+	-webkit-animation: blop 0.5s ease-in-out;
+	        animation: blop 0.5s ease-in-out;
 }
 h1 {
 	font-size: 1.8rem;
@@ -95,22 +116,31 @@ a {
 	background-color: #e9e9e9;
 	transition: all 0.3s ease;
 }
-.input-search-posts {
-	margin: 5rem auto;
+.input-search-posts, fieldset {
+	margin: 0 ;
 	width: min(50rem, 100%);
 	background-color: black;
 	border: none;
 	padding: 1rem;
 	border-radius: 0.5rem;
 	transition: all 0.3s ease;
-	animation: appear 1s ease;
+	-webkit-animation: appear 1s ease;
+	        animation: appear 1s ease;
+}
+fieldset {
+	background-color: transparent;
+	position: relative;	
+	border : 2px solid red;
 }
 .input-search-posts:focus {
 	background-color: rgb(255, 255, 255);
 	transition: all 0.3s ease;
 	color: black;
-	animation: appear 1s ease;
+	-webkit-animation: appear 1s ease;
+	        animation: appear 1s ease;
 }
+
+
 
 @media (max-width: 768px) {
 	.card {

@@ -5,6 +5,8 @@ import ModifyBtn from "../ModifyBtn/ModifyBtn.jsx";
 import "../PostsList/index.css";
 import "./index.css";
 import { AiOutlinePlus } from "react-icons/ai";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+
 import { route } from "preact-router";
 import Fuse from "fuse.js";
 import store from "../../store";
@@ -37,6 +39,7 @@ function PostsList(props) {
             try {
                 const response = await axios.get(`http://localhost:4000/posts`);
                 context.setPosts((prevPosts) => [...prevPosts, ...response.data]);
+                console.log(posts);
                 setPosts((PostsList) => response.data);
                 return;
             } catch (error) {

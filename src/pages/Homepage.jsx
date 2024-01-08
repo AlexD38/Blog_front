@@ -46,7 +46,6 @@ function HomePage(props) {
                 <CategoriesList isAdmin={isAdmin} />
             </div>
             <PostListByCat isAdmin={isAdmin} />
-            {/* <PostsList isAdmin={isAdmin} inputRef={inputRef} searchText={searchText} tagClicked={tagClicked} /> */}
         </>
     );
 }

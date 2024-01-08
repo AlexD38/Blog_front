@@ -21,7 +21,7 @@ function PostsListByCat(props) {
     }, [catClicked, posts]);
 
     // console.log("catClicked : ", catClicked);
-    console.log("filtered posts : ", posts);
+    // console.log("filtered posts : ", posts);
     return (
         <>
             {" "}
@@ -43,7 +43,7 @@ function PostsListByCat(props) {
                             <br />
                             ... OUPS ! <br />
                             <br />
-                            There's no post in this category yet... Login and add one !
+                            There's nothing this category yet...
                         </li>
                     )}
                 </ul>

@@ -28,7 +28,7 @@ function CategoriesList(props) {
         fetchCats();
     }, []);
     const handleClick = (e) => {
-        console.log(store.getState());
+        // console.log(store.getState());
 
         if (!e.target.getAttribute("id")) {
             context.setCategoryClicked(e.target.getAttribute(null));
