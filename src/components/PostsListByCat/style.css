@@ -1,4 +1,12 @@
 .no-post-message {
+    border : 1px solid red;
+    max-width: 70%;
+    margin : 0 auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #ff7f7f76;
     margin-top: 3rem;
     pointer-events: none;
+    font-family: monospace;
+    color: black;
 }

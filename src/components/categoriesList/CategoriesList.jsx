@@ -1,5 +1,4 @@
 import { useState, useContext } from "preact/hooks";
-import "./index.css";
 import axios from "axios";
 import { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
@@ -7,11 +6,13 @@ import store from "../../store";
 import { setCats } from "../../actions";
 import { AiOutlinePlus } from "react-icons/ai";
 import Context from "../../context.js";
+import "./style.css";
 
 function CategoriesList(props) {
     const [categoriesFetched, setCategoriesFetched] = useState([]);
     const dispatch = useDispatch();
     const [categoryClicked, setCategoryClicked] = useState(null);
+    const [isClicked, setIsClicked] = useState(false);
     const context = useContext(Context);
 
     useEffect(() => {
@@ -28,14 +29,15 @@ function CategoriesList(props) {
         fetchCats();
     }, []);
     const handleClick = (e) => {
-        // console.log(store.getState());
+        console.log(context.categoryClicked);
+        const id = e.target.getAttribute("id");
 
-        if (!e.target.getAttribute("id")) {
-            context.setCategoryClicked(e.target.getAttribute(null));
+        if (!id) {
+            context.setCategoryClicked(null);
+        } else {
+            context.setCategoryClicked(id);
         }
-        if (e.target.getAttribute("id")) {
-            context.setCategoryClicked(e.target.getAttribute("id"));
-        }
+        context.setCategoryClicked(id);
     };
 
     setCategoriesFetched(context.cats);
@@ -48,9 +50,11 @@ function CategoriesList(props) {
                 {categoriesFetched && (
                     <ul>
                         {" "}
-                        <li onClick={handleClick}>All</li>
+                        <li onClick={handleClick} className={`category ${context.categoryClicked === null && "is-clicked"}`}>
+                            All
+                        </li>
                         {categoriesFetched.map((cat) => (
-                            <li onClick={handleClick} className="category" key={cat.id} id={cat.id}>
+                            <li onClick={handleClick} className={`category ${cat.id == context.categoryClicked ? "is-clicked" : ""}`} key={cat.id} id={cat.id}>
                                 {cat.name}
                             </li>
                         ))}

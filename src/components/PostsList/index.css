@@ -115,6 +115,7 @@ a {
 .add-card:hover {
 	background-color: #e9e9e9;
 	transition: all 0.3s ease;
+	transform: translateY(-3px);
 }
 .input-search-posts, fieldset {
 	margin: 0 ;

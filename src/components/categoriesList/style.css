@@ -50,3 +50,9 @@
 	font-size: 1.125rem;
 	margin: 0.35rem 0 ;
 }
+ul > .is-clicked {
+	background-color: aliceblue;
+	color: black;
+	transition: all 0.3s ease;
+	
+}
