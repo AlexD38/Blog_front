@@ -56,7 +56,7 @@ input,
 textarea,
 button,
 select {
-	font: inherit;
+	/* font: inherit; */
 }
 
 ul {

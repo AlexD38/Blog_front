@@ -140,6 +140,18 @@ fieldset {
 	-webkit-animation: appear 1s ease;
 	        animation: appear 1s ease;
 }
+.date {
+	position: absolute;
+	top: 0;
+	right : 0;
+	padding: .5rem;
+}
+.date > * {
+	font-family: var(--font-family__slug);
+	font-size: .8rem;
+	font-style: italic;
+	font-weight: 300;
+}
 
 
 

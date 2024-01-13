@@ -5,13 +5,13 @@ import ModifyBtn from "../ModifyBtn/ModifyBtn.jsx";
 import "../PostsList/index.css";
 import "./index.css";
 import { AiOutlinePlus } from "react-icons/ai";
-import { FaMagnifyingGlass } from "react-icons/fa6";
 
 import { route } from "preact-router";
 import Fuse from "fuse.js";
 import store from "../../store";
 import { connect, useDispatch, useSelector } from "react-redux";
 import Context from "../../context.js";
+import moment from "moment";
 
 function PostsList(props) {
     const [posts, setPosts] = useState([]);
@@ -95,6 +95,10 @@ function PostsList(props) {
                                 <a href={"/detailedpost/" + post.id}>
                                     <button className="readmore">Read More...</button>
                                 </a>
+                                <div className="date">
+                                    <span>{moment(post.created_at).format("dddd D MMMM YYYY")}</span>
+                                    <span> - {moment(`${post.updated_at}`, "YYYYMMDD").fromNow()}</span>
+                                </div>
                                 {props.isAdmin && (
                                     <>
                                         <DeleteBtn postId={post.id} />
